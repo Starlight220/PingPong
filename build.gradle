@@ -1,5 +1,6 @@
 plugins {
     id 'org.jetbrains.kotlin.js' version '1.4.0'
+    id "com.diffplug.spotless" version "5.1.1"
 }
 
 group = 'io.github.starlight220'
@@ -34,5 +35,12 @@ kotlin {
                 }
             }
         }
+    }
+}
+
+spotless {
+    kotlin {
+        ktlint()
+        indentWithSpaces(2)
     }
 }

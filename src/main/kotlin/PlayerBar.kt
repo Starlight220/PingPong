@@ -29,7 +29,7 @@ class PlayerBar(side: Side, container: HTMLElement) {
                 }
                 marginTop = "10px"
                 marginBottom = "20px"
-                height = "100px"
+                height = "${BAR_HEIGHT}px"
                 width = "10px"
                 backgroundColor = "#aaaaaa"
             }
@@ -47,10 +47,3 @@ class PlayerBar(side: Side, container: HTMLElement) {
         y -= diff
     }
 }
-
-fun crash(message: String): Nothing {
-    window.alert(message)
-    throw Error(message)
-}
-
-
