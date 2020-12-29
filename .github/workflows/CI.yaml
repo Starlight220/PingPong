@@ -1,11 +1,11 @@
 name: CI
 
-on: [push]
+on: [ push ]
 
 jobs:
-	compile:
-		name: "Compile"
-		runs-on: ubuntu-latest
-		steps:
-			- run: ./gradlew build
+  compile:
+    name: "Compile"
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./gradlew build
 
