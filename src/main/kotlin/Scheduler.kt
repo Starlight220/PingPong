@@ -14,8 +14,8 @@ fun GameElement.register() = Scheduler.register(this)
 
 object Scheduler {
     private lateinit var elements: Set<GameElement>
-    var delay: Long = 0
-    fun runLoop() {
+    private var delay: Long = 0
+    private fun runLoop() {
         elements.forEach {
             it.periodic()
         }

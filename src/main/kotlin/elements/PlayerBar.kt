@@ -8,14 +8,12 @@ import kotlinx.html.id
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.css.CSSStyleDeclaration
 
-private const val SIDE_OFFSET = 20
-
 enum class Side(
     private val roffset: Int? = null,
-    private val loffset: Int? = null,
+    private val loffset: Int,
     private val color: String
 ) {
-    Right(roffset = SIDE_OFFSET, color = RIGHT_PLAYER_COLOR),
+    Right(loffset = MAX_X - SIDE_OFFSET, color = RIGHT_PLAYER_COLOR),
     Left(loffset = SIDE_OFFSET, color = LEFT_PLAYER_COLOR);
 
     val id = "bar" + this.name
@@ -23,23 +21,24 @@ enum class Side(
         position = "absolute"
         marginTop = "10px"
         top = "10px"
+        left = "${loffset}px"
         roffset?.let { right = "${it}px" }
-        loffset?.let { left = "${it}px" }
+//        ?.let { left = "${it}px" }
         marginBottom = "20px"
         height = "${BAR_HEIGHT}px"
-        width = "10px"
+        width = "${BAR_WIDTH}px"
         backgroundColor = this@Side.color
     }
 }
 
 class PlayerBar(side: Side, private val controls: PlayerBarController, container: HTMLElement) :
     GameElement {
-    var speed = STEP
+    private var speed = STEP
     private var element: HTMLElement
     var y: Int
         get() = element.style.top.removeSuffix("px").toInt()
         set(value) {
-            if (value !in fieldBoundariesY) return
+            if (value !in MIN_Y..(MAX_Y - BAR_HEIGHT)) return
             element.style.top = "${value}px"
         }
 
@@ -56,7 +55,7 @@ class PlayerBar(side: Side, private val controls: PlayerBarController, container
      * Move the player's bar a certain distance, in pixels.
      * Positive is up.
      */
-    fun move(diff: Int) {
+    private fun move(diff: Int) {
         // invert so positive is up.
         y -= diff
     }

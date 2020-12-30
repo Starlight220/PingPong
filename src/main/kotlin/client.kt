@@ -11,11 +11,11 @@ fun main() {
         window.addEventListener(type = "keydown", KeyboardTracker::press)
         window.addEventListener(type = "keyup", KeyboardTracker::release)
 
-        document.bgColor = BACKGROUD_COLOR
+        document.bgColor = BACKGROUND_COLOR
 
         GlobalObjectContainer.init()
 
-        Scheduler.launch(20)
+        Scheduler.launch(200)
 
     } catch(e: Throwable) {
         if(e is Error) throw e
@@ -31,7 +31,7 @@ fun crash(message: String): Nothing {
 object GlobalObjectContainer {
     lateinit var rightBar: PlayerBar
     lateinit var leftBar: PlayerBar
-    lateinit var ball: Ball
+    private lateinit var ball: Ball
     fun init() {
         leftBar =
             PlayerBar(Side.Left, object : PlayerBarController {
@@ -49,7 +49,7 @@ object GlobalObjectContainer {
 
         ball = Ball(BALL_DIAMETER, document.body!!)
         ball.location = Coordinates.cartesian(MAX_X/2, MAX_Y/2)
-        ball.redirect(Coordinates.polar(1, 0.0))
+        ball.redirect(Coordinates.polar(10, PI * 0.25))
         ball.register()
     }
 }
