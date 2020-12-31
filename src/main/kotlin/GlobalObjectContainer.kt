@@ -35,10 +35,10 @@ object GlobalObjectContainer {
     }
 }
 
-inline fun getRandomInitHeading(): Double {
+private inline fun getRandomInitHeading(): Double {
     var attempt: Double
     do {
         attempt = Random.nextDouble()
-    } while (attempt == 0.5)
-    return attempt * PI
+    } while (attempt % 0.5 == 0.25)
+    return attempt * 2 * PI
 }
