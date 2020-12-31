@@ -28,7 +28,7 @@ object GlobalObjectContainer {
 
         ball = Ball(BALL_DIAMETER, document.body!!)
         ball.location = Coordinates.cartesian(MAX_X / 2, MAX_Y / 2)
-        ball.redirect(Coordinates.polar(5, getRandomInitHeading()))
+        ball.redirect(Coordinates.polar(7, getRandomInitHeading()))
         ball.register()
     }
 }

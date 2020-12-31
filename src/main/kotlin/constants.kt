@@ -3,7 +3,7 @@ package io.github.starlight220.pingpong
 import kotlinx.browser.document
 
 
-const val STEP: Int = 10
+const val STEP: Int = 8
 const val BAR_HEIGHT: Int = 100
 const val BAR_WIDTH: Int = 10
 
