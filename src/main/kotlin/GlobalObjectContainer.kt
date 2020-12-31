@@ -17,6 +17,7 @@ object GlobalObjectContainer {
                 override val up: () -> Boolean = { KeyboardTracker[W] }
                 override val down: () -> Boolean = { KeyboardTracker[S] }
             }, document.body!!)
+        leftBar.y = MAX_Y/2
         leftBar.register()
 
         rightBar =
@@ -24,6 +25,7 @@ object GlobalObjectContainer {
                 override val up: () -> Boolean = { KeyboardTracker[UP] }
                 override val down: () -> Boolean = { KeyboardTracker[DOWN] }
             }, document.body!!)
+        rightBar.y = MAX_Y/2
         rightBar.register()
 
         ball = Ball(BALL_DIAMETER, document.body!!)
