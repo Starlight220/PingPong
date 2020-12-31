@@ -1,9 +1,8 @@
-package io.github.starlight220.pingpong
+package io.github.starlight220.pingpong.utils
 
+import io.github.starlight220.pingpong.GlobalObjectContainer
 import kotlinx.browser.document
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.w3c.dom.HTMLElement
 
 interface GameElement {
@@ -20,9 +19,9 @@ object Scheduler {
             it.periodic()
         }
 
-        (document.getElementById("ball") as? HTMLElement)!!.style.run {
-            console.log("left: $left \t top: $top")
-        }
+//        (document.getElementById("ball") as? HTMLElement)!!.style.run {
+//            console.log("left: $left \t top: $top")
+//        }
     }
 
     fun register(element: GameElement) {
@@ -30,9 +29,11 @@ object Scheduler {
         elements += element
     }
 
-    fun launch(delay: Long = this.delay) {
-        this.delay = delay
-        GlobalScope.launch {
+    private var job: Job? = null
+    fun launch(delay: Long = Scheduler.delay) {
+        Scheduler.delay = delay
+        GlobalObjectContainer.init()
+        job = GlobalScope.launch {
             while (true) {
                 runLoop()
                 delay(delay)
@@ -40,4 +41,9 @@ object Scheduler {
         }
     }
 
+    fun close() {
+        job?.cancel()
+        job = null
+        elements = HashSet()
+    }
 }

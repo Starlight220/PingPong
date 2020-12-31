@@ -1,6 +1,8 @@
 package io.github.starlight220.pingpong.elements
 
 import io.github.starlight220.pingpong.*
+import io.github.starlight220.pingpong.utils.GameElement
+import io.github.starlight220.pingpong.utils.crash
 import kotlinx.browser.document
 import kotlinx.html.div
 import kotlinx.html.dom.append
@@ -15,6 +17,8 @@ enum class Side(
 ) {
     Right(loffset = MAX_X - SIDE_OFFSET, color = RIGHT_PLAYER_COLOR),
     Left(loffset = SIDE_OFFSET, color = LEFT_PLAYER_COLOR);
+
+    operator fun not() = if(this == Right) Left else Right
 
     val id = "bar" + this.name
     fun applyStyle(style: CSSStyleDeclaration) = with(style) {

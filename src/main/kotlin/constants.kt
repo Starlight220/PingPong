@@ -15,7 +15,7 @@ const val RIGHT_PLAYER_COLOR = "#e3102c"
 const val BALL_COLOR: String = "#10e37d"
 const val BALL_DIAMETER: Int = 50
 //const val INIT_BALL_SPEED: Double = 20.0
-const val MAX_SPEED: Double = 10.0
+const val MAX_SPEED: Double = 20.0
 
 
 const val UP = "ArrowUp"
